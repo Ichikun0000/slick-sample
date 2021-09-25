@@ -1,0 +1,34 @@
+@charset "UTF-8";
+// 変数・ミックスイン
+//
+// 色などの変数読み込み
+//
+@use "setting/setting";
+@use "mixin/mixin";
+
+// plugins
+//
+// 外部CSS読み込み
+//
+@use './plugins';
+
+
+// base
+//
+// ベース系
+//
+@use './base/base';
+
+
+// module
+//
+// 汎用モジュール
+//
+@use './modules';
+
+
+// page module
+//
+// ページモジュール
+//
+@use './page';

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="viewport" content="width=device-width">
+
+  <title>スライダーデモ03</title>
+
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+
+
+</head>
+
+<body>
+
+  <div id="wrapper">
+
+
+    <main class="p-slide03">
+      <div class="inner-block">
+        <div class="detail-area">
+          <div class="detail-area__imgbox">
+            <ul class="item_visual">
+              <li>
+                <div class="img-box">
+                  <img src="/img/item/item-detail01.jpg" alt="" />
+                </div>
+              </li>
+              <li>
+                <div class="img-box">
+                  <img src="/img/item/item-detail02.jpg" alt="" />
+                </div>
+              </li>
+              <li>
+                <div class="img-box">
+                  <img src="/img/item/item-detail03.jpg" alt="" />
+                </div>
+              </li>
+              <li>
+                <div class="img-box">
+                  <img src="/img/item/item-detail04.jpg" alt="" />
+                </div>
+              </li>
+              <li>
+                <div class="img-box">
+                  <img src="/img/item/item-detail05.jpg" alt="" />
+                </div>
+              </li>
+            </ul>
+            <ul class="item_nav">
+              <li class="slideThumb" data-index="0">
+                <div class="img-box">
+                  <img src="/img/item/item-detail01.jpg" alt="" />
+                </div>
+              </li>
+              <li class="slideThumb" data-index="1">
+                <div class="img-box">
+                  <img src="/img/item/item-detail02.jpg" alt="" />
+                </div>
+              </li>
+              <li class="slideThumb" data-index="2">
+                <div class="img-box">
+                  <img src="/img/item/item-detail03.jpg" alt="" />
+                </div>
+              </li>
+              <li class="slideThumb" data-index="3">
+                <div class="img-box">
+                  <img src="/img/item/item-detail04.jpg" alt="" />
+                </div>
+              </li>
+              <li class="slideThumb" data-index="4">
+                <div class="img-box">
+                  <img src="/img/item/item-detail05.jpg" alt="" />
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="detail-area__contbox">
+            <ul class="c-tag-list">
+              <li class="c-tag">おすすめ</li>
+            </ul>
+            <div class="title-box">
+              <h1 class="title">商品名が入ります</h1>
+            </div>
+            <div class="price-box">
+              <span class="price">￥3,000</span>
+              <span class="price-tax">税込</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <nav class="c-breadcrumb l-under">
+      <div class="inner-block">
+        <ul>
+          <li><a href="/">トップページ</a></li>
+          <li><a href="/slider-demo/01/">スライダーデモ01</a></li>
+          <li><a href="/slider-demo/02/">スライダーデモ02</a></li>
+          <li><a href="/slider-demo/03/">スライダーデモ03</a></li>
+        </ul>
+      </div>
+    </nav>
+
+
+  </div><!-- /wrapper -->
+
+  <script src="/js/lib/jquery-3.6.0.min.js"></script>
+  <script src="/js/lib/slick.min.js"></script>
+
+
+  <script>
+    (function () {
+      //商品詳細スライダー
+      $('.item_visual').slick({
+        dots: false,
+        arrows: false,
+      });
+
+      $('.slideThumb').on('click', function () {
+        var index = $(this).attr('data-index');
+        $('.item_visual').slick('slickGoTo', index, false);
+      })
+    })();
+  </script>
+
+</body>
+
+</html>

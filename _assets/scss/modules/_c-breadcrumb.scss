@@ -1,0 +1,22 @@
+@use '../mixin/mixin' as *;
+@use '../setting/setting' as *;
+
+.c-breadcrumb {
+  background-color: #737373;
+  padding: 30px;
+  li {
+    + li {
+      margin-top: 1em;
+    }
+  }
+
+  a {
+    text-decoration: underline;
+    color: #fff;
+  }
+
+
+  &.l-under {
+    margin-top: 180px;
+  }
+}

@@ -1,0 +1,14 @@
+@use '../mixin/mixin' as *;
+@use '../setting/setting' as *;
+
+.c-tag {
+  background-color: #E6AC6E;
+  color: #fff;
+  font-size: 16px;
+  padding: 5px 10px;
+  display: inline-block;
+  @include sp {
+    font-size: 14px;
+    padding: 2px 10px;
+  }
+}

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="viewport" content="width=device-width">
+
+  <title>スライダーデモ02</title>
+
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+
+
+
+</head>
+
+<body>
+
+  <div id="wrapper">
+
+
+    <main class="p-slide02">
+      <div class="l-mv-block">
+        <ul class="l-mv-block-slider" id="js-mv-block-slick02">
+          <li class="slick-current"><a href="#"><img src="/img/common/slide01.jpg" alt="image01"></a></li>
+          <li><a href="#"><img src="/img/common/slide02.jpg" alt="image02"></a></li>
+          <li><a href="#"><img src="/img/common/slide03.jpg" alt="image03"></a></li>
+          <li><a href="#"><img src="/img/common/slide04.jpg" alt="image04"></a></li>
+          <li><a href="#"><img src="/img/common/slide05.jpg" alt="image05"></a></li>
+        </ul>
+      </div>
+
+    </main>
+
+    <nav class="c-breadcrumb l-under">
+      <div class="inner-block">
+        <ul>
+          <li><a href="/">トップページ</a></li>
+          <li><a href="/slider-demo/01/">スライダーデモ01</a></li>
+          <li><a href="/slider-demo/02/">スライダーデモ02</a></li>
+          <li><a href="/slider-demo/03/">スライダーデモ03</a></li>
+        </ul>
+      </div>
+    </nav>
+
+
+
+  </div><!-- /wrapper -->
+
+  <script src="/js/lib/jquery-3.6.0.min.js"></script>
+  <script src="/js/lib/slick.min.js"></script>
+
+  <script>
+    (function () {
+      var $slider = $('#js-mv-block-slick02');
+      var cls = 'slick-now';
+
+      if (!$slider.length) return;
+
+      //初回のみ、1枚目の要素にクラスを付加
+      $slider.on('init', function () {
+        $(this).find('.slick-current').addClass('slick-now');
+      });
+
+      //アニメーション開始前にクラスを外す
+      $slider.on('beforeChange', function (event, slick, currentSlide, nextSlide) {
+        $(this).find('.slick-slide').removeClass(cls);
+      });
+
+      //アニメーション完了後、アクティブな要素にクラスを付加
+      //「data-slick-index」属性で連番が振られるのでそれを利用する
+      $slider.on('afterChange', function (event, slick, currentSlide, nextSlide) {
+        $(this)
+          .find('.slick-slide[data-slick-index="' + currentSlide + '"]')
+          .addClass(cls);
+      });
+
+
+      $slider.slick({
+        autoplay: true,
+        centerMode: true,
+        variableWidth: true,
+        dots: true,
+        arrows: false,
+        dotsClass: 'u-slide-dots',
+        customPaging: function (slider, i) {
+          return '';
+        },
+        responsive: [{
+          breakpoint: 769, // 768px以下
+          settings: {
+            centerMode: false,
+            variableWidth: false,
+            dots: false
+          }
+        }, ]
+      });
+    })();
+  </script>
+</body>
+
+</html>

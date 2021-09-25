@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="viewport" content="width=device-width">
+
+  <title>スライダーデモ01</title>
+
+
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+
+</head>
+
+<body>
+
+  <div id="wrapper">
+
+
+    <main class="p-slide01">
+      <div class="l-mv-block">
+        <ul class="l-mv-block-slider" id="js-mv-block-slick">
+          <li><a href="#"><img src="/img/common/slide01.jpg" alt="image01"></a></li>
+          <li><a href="#"><img src="/img/common/slide02.jpg" alt="image02"></a></li>
+          <li><a href="#"><img src="/img/common/slide03.jpg" alt="image03"></a></li>
+          <li><a href="#"><img src="/img/common/slide04.jpg" alt="image04"></a></li>
+          <li><a href="#"><img src="/img/common/slide05.jpg" alt="image05"></a></li>
+        </ul>
+      </div>
+      <div class="l-latest-news-block">
+        <div class="inner-block">
+          <div class="l-latest-news-block-tag">
+            <span>最新情報</span>
+          </div>
+
+          <ul class="l-latest-news-list" id="js-latest-news-slick">
+            <li>
+              <a href="" class="l-latest-news-block-content">
+                <div class="time">
+                  <time datetime="2022-12-31">2021.12.31</time>
+                </div>
+                <div class="l-latest-news-content">
+                  ここにニュースが入りますここにニュースが入ります
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="" class="l-latest-news-block-content">
+                <div class="time">
+                  <time datetime="2022-12-31">2021.12.31</time>
+                </div>
+                <div class="l-latest-news-content">
+                  ここにニュースが入りますここにニュースが入ります
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="" class="l-latest-news-block-content">
+                <div class="time">
+                  <time datetime="2022-12-31">2021.12.31</time>
+                </div>
+                <div class="l-latest-news-content">
+                  ここにニュースが入りますここにニュースが入ります
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </main>
+
+    <nav class="c-breadcrumb l-under">
+      <div class="inner-block">
+        <ul>
+          <li><a href="/">トップページ</a></li>
+          <li><a href="/slider-demo/01/">スライダーデモ01</a></li>
+          <li><a href="/slider-demo/02/">スライダーデモ02</a></li>
+          <li><a href="/slider-demo/03/">スライダーデモ03</a></li>
+        </ul>
+      </div>
+    </nav>
+
+
+
+  </div><!-- /wrapper -->
+
+  <script src="/js/lib/jquery-3.6.0.min.js"></script>
+  <script src="/js/lib/slick.min.js"></script>
+
+  <script>
+    (function () {
+      var $slider = $('#js-mv-block-slick');
+
+      if (!$slider.length) return;
+
+      $slider.slick({
+        autoplay: true,
+        centerMode: true,
+        variableWidth: true,
+        dots: true,
+        arrows: false,
+        dotsClass: 'u-slide-dots',
+        customPaging: function (slider, i) {
+          return '';
+        },
+        responsive: [{
+          breakpoint: 769, // 768px以下
+          settings: {
+            centerMode: false,
+            variableWidth: false,
+            dots: false
+          }
+        }, ]
+      });
+    })();
+
+    (function () {
+      var $slider = $('#js-latest-news-slick');
+
+      if (!$slider.length) return;
+
+      $slider.slick({
+        autoplay: true,
+        dots: false,
+        arrows: true,
+        vertical: true,
+        prevArrow: '<div class="btn prev"><span></span></div>',
+        nextArrow: '<div class="btn next"><span></span></div>',
+        responsive: [{
+          breakpoint: 769, // 768px以下
+          settings: {
+            arrows: false,
+          }
+        }, ]
+      });
+    })();
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,233 @@
+@use '../../../mixin/mixin' as *;
+@use '../../../setting/setting' as *;
+
+
+.p-slide02 {
+  .l-mv-block {
+    overflow: hidden;
+    .slider {
+      font-size: 0;
+    }
+  }
+
+  .slick-slider {
+    font-size: 0;
+  }
+  .slick-slide {
+    position: relative;
+    @include pc() {
+      &::before {
+        position: absolute;
+        content: "";
+        display: block;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.8);
+        opacity: 1;
+        transition: opacity 0.2s ease-in;
+      }
+      &.slick-now {
+        &::before {
+          opacity: 0;
+        }
+      }
+    }
+    a {
+      outline: none;
+    }
+    img {
+      width: 100%;
+      object-fit: cover;
+      @include pc {
+        height: 400px;
+        max-width: 800px;
+        width: (800 / 1920 * 100vw);
+      }
+      @include sp {
+        height: 300px;
+      }
+    }
+  }
+  .l-mv-block-slider {
+    .slick-slide {
+      a {
+        display: block;
+        @include pc {
+          opacity: 0.8;
+        }
+      }
+    }
+    .u-slide-dots {
+      text-align: center;
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      li {
+        width: 10px;
+        height: 10px;
+        background-color: #999;
+        border-radius: 50%;
+        cursor: pointer;
+        &.slick-active {
+          background-color: #fff;
+        }
+        &:not(:first-child) {
+          margin-left: 15px;
+        }
+      }
+    }
+  }
+
+  /* l-latest-news-block
+  ---------------------------- */
+  .l-latest-news-block {
+    background-color: #fafafa;
+    padding: 10px 0;
+    @include sp {
+      padding: 15px 0;
+    }
+    & > .inner-block {
+      &::after {
+        content: "";
+        clear: both;
+        display: block;
+      }
+    }
+    &-tag {
+      width: 100px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $cWhite;
+      background-color: #edb506;
+      @include pc {
+        float: left;
+      }
+
+      @include sp {
+        font-size: 12px;
+        height: 23px;
+        width: 75px;
+        margin-bottom: 10px;
+      }
+    }
+    &-content {
+      max-width: 80%;
+      display: flex;
+      @include pc {
+        margin-left: 20px;
+      }
+
+      @include sp {
+        flex-direction: column;
+      }
+      .time {
+        font-size: 16px;
+        font-weight: bold;
+        flex-shrink: 0;
+        @include sp {
+          display: block;
+          font-size: 12px;
+        }
+      }
+      .l-latest-news-content {
+        font-size: 16px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        @include pc {
+          margin-left: 20px;
+        }
+        @include sp {
+          font-size: 14px;
+          margin-top: 6px;
+        }
+      }
+    }
+    &-gallery-btn {
+      margin-left: auto;
+      display: flex;
+    }
+
+    .l-latest-news-list {
+      display: flex;
+      align-items: center;
+      .btn {
+        width: 30px;
+        height: 30px;
+        background-color: $cWhite;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: solid 1px $cBlue;
+        flex-shrink: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        z-index: map-get($map: $layer, $key: "default");
+
+        > span {
+          display: block;
+          position: relative;
+          &::before {
+            content: "";
+            display: block;
+            width: 6px;
+            height: 11px;
+          }
+        }
+
+        &:hover {
+          background-color: $cBlue;
+          &.prev {
+            > span {
+              &::before {
+                background-image: url("../img/common/arrow-left-white.svg");
+              }
+            }
+          }
+          &.next {
+            > span {
+              &::before {
+                background-image: url("../img/common/arrow-right-white.svg");
+              }
+            }
+          }
+        }
+
+        &.prev {
+          right: 35px;
+          > span {
+            &::before {
+              @include background($image: url("../img/common/arrow-left.svg"));
+            }
+          }
+        }
+        &.next {
+          > span {
+            &::before {
+              @include background($image: url("../img/common/arrow-right.svg"));
+            }
+          }
+        }
+      }
+
+      .slick-slide {
+        @include pc {
+          line-height: 40px;
+        }
+      }
+    }
+  }
+  /* l-latest-news-block end
+  ---------------------------- */
+}
