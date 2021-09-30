@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="viewport" content="width=device-width">
+
+  <title>スライダーデモ03</title>
+
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+
+
+</head>
+
+
+<body>
+  <div id="wrapper">
+
+    <main class="p-slide04">
+
+
+
+      <section class="triangle-solution-block">
+        <div class="inner-block">
+          <div class="triangle-slick-wrap">
+            <div class="triangle-container">
+              <div class="circle-wrap">
+                <div class="circle-item item01" data-rotate="0">
+                  <p class="inner">
+                    <span class="en">raccoon</span>
+                    <span class="ja">アライグマ</span>
+                  </p>
+                </div>
+                <div class="circle-item item02" data-rotate="1">
+                  <p class="inner">
+                    <span class="en">dog</span>
+                    <span class="ja">犬</span>
+                  </p>
+                </div>
+                <div class="circle-item item03" data-rotate="2">
+                  <p class="inner">
+                    <span class="en">cat</span>
+                    <span class="ja">猫</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="triangle-contents js-triangle-slick">
+              <div class="triangle-item">
+                <div class="img-box">
+                  <img src="/img/common/triangle-item01.jpg" alt="">
+                </div>
+              </div>
+              <div class="triangle-item">
+                <div class="img-box">
+                  <img src="/img/common/triangle-item02.jpg" alt="">
+                </div>
+              </div>
+              <div class="triangle-item">
+                <div class="img-box">
+                  <img src="/img/common/triangle-item03.jpg" alt="">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+
+    </main>
+
+    <nav class="c-breadcrumb l-under">
+      <div class="inner-block">
+        <ul>
+          <li><a href="/slider-demo/01/">スライダーデモ01</a></li>
+          <li><a href="/slider-demo/02/">スライダーデモ02</a></li>
+          <li><a href="/slider-demo/03/">スライダーデモ03</a></li>
+          <li><a href="/slider-demo/04/">スライダーデモ04</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div><!-- /wrapper -->
+
+  <script src="/js/lib/jquery-3.6.0.min.js"></script>
+  <script src="/js/lib/slick.min.js"></script>
+
+  <script>
+    (function () {
+      const $slider = $('.js-triangle-slick');
+      if (!$slider.length) return;
+
+      $slider.slick({
+        vertical: true,
+        verticalSwiping: true,
+        dots: true,
+        arrows: false,
+        dotsClass: 'triangle-dots',
+        customPaging: function () {
+          return '';
+        },
+      });
+
+
+      // スクロールイベントの監視
+      $slider.on('wheel', function (e) {
+        e.preventDefault();
+
+        if (!$slider.hasClass('js-slick-moving')) {
+          if (e.originalEvent.deltaY > 0) {
+            $(this).slick('slickNext');
+          } else {
+            $(this).slick('slickPrev');
+          }
+        }
+      })
+
+
+      // 円形エリア
+      const $circle = $('.circle-item');
+      const circleLast = $circle.length - 1;
+      let rotateDiff, is_return;
+
+      const circleRotate = function (currentItem, nextItem) {
+        if (currentItem === circleLast && nextItem === 0) {
+          rotateDiff = 1;
+        } else if (currentItem === 0 && nextItem === circleLast) {
+          rotateDiff = -1;
+        } else {
+          rotateDiff = nextItem - currentItem;
+        }
+        is_return = rotateDiff ? 0 : 1;
+
+        $circle.each(function () {
+          let currentRotate = $(this).data('rotate');
+          let nextRotate = is_return ? currentRotate + rotateDiff : currentRotate - rotateDiff;
+          let deg = nextRotate * 120;
+
+          $(this).css('transform', 'rotate(' + -deg + 'deg)');//円の回転
+          $(this).find('.inner').css('transform', 'rotate(' + deg + 'deg)');//円の中身のテキストの回転
+          $(this).data('rotate', nextRotate);
+        });
+
+        $circle.eq(nextItem).addClass('is-current').siblings().removeClass('is-current');
+      }
+
+      //初期化（ロード時実行）
+      circleRotate(0, 0);
+
+      $slider.on('beforeChange', function (event, slick, currentSlide, nextSlide) {
+        circleRotate(currentSlide, nextSlide);
+      });
+
+      $circle.on('click', function () {
+        let index = $(this).index();
+        $slider.slick('slickGoTo', index);
+      });
+
+
+    })();
+  </script>
+</body>
+
+</html>
