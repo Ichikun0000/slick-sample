@@ -872,10 +872,70 @@ dl, dt, dd {
   width: 100%;
 }
 
+.p-slide05 .mv-slider .slick-slide {
+  /* slick-slideクラスはslickライブラリを起動したときに付与されるクラス */
+  /* htmlだと「.slider-item」のdivタグに付与される */
+  overflow: hidden;
+  outline: none;
+  position: relative;
+}
+.p-slide05 .mv-slider .slick-slide > .slider-img {
+  padding-top: min(47.5841874085%, 800px);
+  position: relative;
+}
+.p-slide05 .mv-slider .slick-slide > .slider-img img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.p-slide05 .mv-slider .slick-slide.slick-active, .p-slide05 .mv-slider .slick-slide[tabindex="0"] {
+  /* slick-activeだけだとフェード切り替え時にカクツクため */
+}
+.p-slide05 .mv-slider .slick-slide.slick-active > .slider-img, .p-slide05 .mv-slider .slick-slide[tabindex="0"] > .slider-img {
+  -webkit-transform-origin: center center;
+          transform-origin: center center;
+  -webkit-animation: bgZoomOutAnime 7s ease-out forwards;
+          animation: bgZoomOutAnime 7s ease-out forwards;
+  /* アニメーションの長さはslickのautoplaySpeedより少し大きくしておく */
+}
+.p-slide05 .mv-slider .slick-slide > .slider-text {
+  position: absolute;
+  font-size: 30px;
+  color: #fff;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  left: 30px;
+}
+
+/* 最初少し大きくしておき徐々に元の大きさに戻すアニメーション */
+@-webkit-keyframes bgZoomOutAnime {
+  0% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+@keyframes bgZoomOutAnime {
+  0% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
 /* -----------------------------------------------
 * Page エントリーポイント
 -------------------------------------------------- */
-
 @media only screen and (min-width: 769px) {
   a:hover {
     opacity: 0.8;
@@ -1008,7 +1068,6 @@ button {
     padding: 30px;
   }
 }
-
 @media only screen and (max-width: 768px) {
   body {
     font-size: 14px;
@@ -1182,6 +1241,9 @@ textarea {
   }
   .p-slide04 .triangle-item {
     padding-left: 110px;
+  }
+  .p-slide05 .mv-slider .slick-slide > .slider-img {
+    padding-top: min(106.6666666667%, 500px);
   }
 }
 /*# sourceMappingURL=style.css.map */

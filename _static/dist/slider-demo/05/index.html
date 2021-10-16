@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="viewport" content="width=device-width">
+
+  <title>スライダーデモ05</title>
+
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+
+
+</head>
+
+
+<body>
+  <div id="wrapper">
+
+    <main class="p-slide05">
+
+      <div class="mv-block">
+        <div class="mv-slider">
+          <div class="slider-item">
+            <div class="slider-img">
+              <picture>
+                <source srcset="/img/common/slide01.jpg" media="(min-width: 768px)" /><!-- 幅768px以上なら表示 -->
+                <img src="/img/common/slide01-sp.jpg" alt="" />
+              </picture>
+            </div>
+            <div class="slider-text slider-text01">
+              スライド1のテキスト
+            </div>
+          </div>
+          <div class="slider-item">
+            <div class="slider-img">
+              <picture>
+                <source srcset="/img/common/slide02.jpg" media="(min-width: 768px)" /><!-- 幅768px以上なら表示 -->
+                <img src="/img/common/slide02-sp.jpg" alt="" />
+              </picture>
+            </div>
+            <div class="slider-text slider-text01">
+              スライド2のテキスト
+            </div>
+          </div>
+          <div class="slider-item">
+            <div class="slider-img">
+              <picture>
+                <source srcset="/img/common/slide03.jpg" media="(min-width: 768px)" /><!-- 幅768px以上なら表示 -->
+                <img src="/img/common/slide03-sp.jpg" alt="" />
+              </picture>
+            </div>
+            <div class="slider-text slider-text01">
+              スライド3のテキスト
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </main>
+
+    <nav class="c-breadcrumb l-under">
+      <div class="inner-block">
+        <ul>
+          <li><a href="/slider-demo/01/">スライダーデモ01</a></li>
+          <li><a href="/slider-demo/02/">スライダーデモ02</a></li>
+          <li><a href="/slider-demo/03/">スライダーデモ03</a></li>
+          <li><a href="/slider-demo/04/">スライダーデモ04</a></li>
+          <li><a href="/slider-demo/05/">スライダーデモ05</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div><!-- /wrapper -->
+
+  <script src="/js/lib/jquery-3.6.0.min.js"></script>
+  <script src="/js/lib/slick.min.js"></script>
+
+  <script>
+    if ($('.mv-slider')[0]) {
+      $('.mv-slider').slick({
+        arrows: false,
+        dots: false,
+        fade: true,
+        autoplay: true,
+        autoplaySpeed: 5000,/* スライド切り替えのスピード */
+        speed: 1500,/* fadeのスピード */
+        pauseOnHover: false
+      });
+    }
+  </script>
+</body>
+
+</html>
