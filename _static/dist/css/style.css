@@ -892,12 +892,7 @@ dl, dt, dd {
   -o-object-fit: cover;
      object-fit: cover;
 }
-.p-slide05 .mv-slider .slick-slide.slick-active, .p-slide05 .mv-slider .slick-slide[tabindex="0"] {
-  /* slick-activeだけだとフェード切り替え時にカクツクため */
-}
-.p-slide05 .mv-slider .slick-slide.slick-active > .slider-img, .p-slide05 .mv-slider .slick-slide[tabindex="0"] > .slider-img {
-  -webkit-transform-origin: center center;
-          transform-origin: center center;
+.p-slide05 .mv-slider .slick-slide.js-moving .slider-img {
   -webkit-animation: bgZoomOutAnime 7s ease-out forwards;
           animation: bgZoomOutAnime 7s ease-out forwards;
   /* アニメーションの長さはslickのautoplaySpeedより少し大きくしておく */
@@ -931,6 +926,27 @@ dl, dt, dd {
   100% {
     -webkit-transform: scale(1);
             transform: scale(1);
+  }
+}
+/* 徐々に元の大きくするアニメーション */
+@-webkit-keyframes bgZoomInAnime {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+}
+@keyframes bgZoomInAnime {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
   }
 }
 /* -----------------------------------------------

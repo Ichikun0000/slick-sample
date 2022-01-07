@@ -78,15 +78,45 @@
 
   <script>
     if ($('.mv-slider')[0]) {
-      $('.mv-slider').slick({
+
+      const $slider = $('.mv-slider');
+      const default_autoplay_speed = 5000;
+
+      /*
+      * 初回だけ１枚目の切り替えが早いので少し多めに秒数をとる
+      * default_autoplay_speedの値+speedの値
+      */
+      const init_autoplay_speed = 6500;
+
+      const anime_trigger_class_name = 'js-moving';
+
+      $slider.on('init', function () {
+        $('.slick-slide[data-slick-index="0"]').addClass(anime_trigger_class_name);
+      })
+
+      $slider.slick({
         arrows: false,
         dots: false,
         fade: true,
         autoplay: true,
-        autoplaySpeed: 5000,/* スライド切り替えのスピード */
-        speed: 1500,/* fadeのスピード */
+        /* スライド切り替えのスピード */
+        autoplaySpeed: init_autoplay_speed,
+        /* fadeのスピード */
+        speed: 1500,
         pauseOnHover: false
-      });
+      }).on('beforeChange', function (event, slick, currentSlide, nextSlide) {
+
+        //デフォルトのスピードに戻す
+        $(this).slick("slickSetOption", "autoplaySpeed", default_autoplay_speed);
+
+        //
+        const slide_num = $('.slick-slide').length;
+        $('.slick-slide[data-slick-index="' + (currentSlide - 1) + '"]').removeClass(anime_trigger_class_name);
+        $('.slick-slide[data-slick-index="' + nextSlide + '"]').addClass(anime_trigger_class_name);
+        if (currentSlide == 0) {
+          $('.slick-slide[data-slick-index="' + (slide_num - 1) + '"]').removeClass(anime_trigger_class_name);
+        }
+      })
     }
   </script>
 </body>

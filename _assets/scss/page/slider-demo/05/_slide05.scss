@@ -25,12 +25,9 @@
         }
       }
 
-      &.slick-active,
-      &[tabindex="0"] {
-        /* slick-activeだけだとフェード切り替え時にカクツクため */
-        > .slider-img {
-          transform-origin: center center;
-          animation: bgZoomOutAnime 7s ease-out forwards;/* アニメーションの長さはslickのautoplaySpeedより少し大きくしておく */
+      &.js-moving {
+        .slider-img {
+          animation: bgZoomOutAnime 7s ease-out forwards; /* アニメーションの長さはslickのautoplaySpeedより少し大きくしておく */
         }
       }
 
@@ -53,5 +50,15 @@
   }
   100% {
     transform: scale(1);
+  }
+}
+
+/* 徐々に元の大きくするアニメーション */
+@keyframes bgZoomInAnime {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
   }
 }
